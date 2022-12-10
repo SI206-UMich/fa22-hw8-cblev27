@@ -12,7 +12,7 @@ def get_restaurant_data(db_filename):
     path = os.path.dirname(os.path.abspath(__file__))
     conn = sqlite3.connect(path+'/'+db_filename)
     cur = conn.cursor()
-    cur.execute("SELECT restaurants.name, categories.category, buildings.building, restaurants.rating FROM restaurants JOIN categories, buildings ON restaurants.building_id = buildings.id JOIN categories ON restaurants.category_id = categories.id")
+    cur.execute("SELECT restaurants.name, categories.category, buildings.building, restaurants.rating FROM restaurants JOIN categories, buildings ON restaurants.building_id = buildings.id AND restaurants.category_id = categories.id")
     count = cur.fetchall()
     conn.commit()
 
